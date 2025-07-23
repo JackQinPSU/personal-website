@@ -1,0 +1,24 @@
+.skill-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f1f5f9;
+    position: sticky;
+}
+
+nav a {
+    display: flex;
+    background-color: #0077B6;
+    padding: 10px;
+    border-radius: 20%;
+    color: white;
+}
+
