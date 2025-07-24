@@ -4,7 +4,7 @@ A personal portfolio website to showcase my background, projects, and contact in
 
 ## 🚀 Demo
 You can view the site live at: https://personal-website-y4yz.onrender.com/
-*(Replace with your actual domain or localhost info)*
+
 
 ## ✨ Features
 - About Me section
