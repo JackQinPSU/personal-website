@@ -14,7 +14,7 @@ You can view the site live at: https://personal-website-y4yz.onrender.com/
 
 ## 🛠 Tech Stack
 - **Frontend:** HTML, CSS, JavaScript
-- **Framework:** React (or replace with what you used)
+- **Framework:** React 
 - **Version Control:** Git + GitHub
 
 ## 🧑‍💻 Getting Started
