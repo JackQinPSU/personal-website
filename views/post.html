@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} — Qishu (Jack) Qin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="wrap">
+            <header class="site-header rv">
+                <a class="nl" href="/"><span class="bk" aria-hidden="true">←</span>index</a>
+                <span class="brand mono"><span class="brand-mark" aria-hidden="true"></span>qishu qin</span>
+            </header>
+
+            <article>
+                <div class="post-head rv" style="--i: 1">
+                    <p class="post-meta mono label">
+                        <span>{{date}}</span><span>{{tag}}</span><span>{{minutes}} min read</span>
+                    </p>
+                    <h1 class="headline">{{title}}</h1>
+                    {{summary}}
+                </div>
+
+                {{toc}}
+
+                <div class="prose rv" style="--i: 3">
+{{content}}
+                </div>
+
+                {{next}}
+            </article>
+
+            <footer class="site-footer mono">© 2026 qishu qin · plain html, no tracking</footer>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

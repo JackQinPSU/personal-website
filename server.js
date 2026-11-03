@@ -1,45 +1,30 @@
 const express = require('express');
 const path = require('path');
+const { POSTS_DIR, listPosts, renderPostPage } = require('./posts');
 const app = express();
-const nodemailer = require('nodemailer');
-require('dotenv').config();
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Nodemailer transporter
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+// Images and files uploaded next to the posts
+app.use('/post', express.static(POSTS_DIR, { index: false }));
+
+// List of posts for the home page
+app.get('/posts.json', (req, res) => {
+    res.json(listPosts());
+});
+
+// A single post
+app.get('/post/:slug', (req, res) => {
+    const page = renderPostPage(req.params.slug);
+    if (!page) {
+        return res.status(404).send('Post not found.');
     }
+    res.send(page);
 });
 
-//POST route for form submission
-app.post('/submit', (req, res) => {
-    const{name, email, message} = req.body;
-
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
-        subject: `New Contact Form Submission from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Email failed:', error)
-            return res.status(500).send('Something went wrong, please try again later.');
-        }
-        console.log('Email send', info.response);
-        res.redirect('/thankyou.html');
-    });    
-});
-
-// Start the server
+// Start the local preview server, reachable only from this computer
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

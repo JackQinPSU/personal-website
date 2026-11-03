@@ -3,25 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qishu (Jack) Qin - Personal Website</title>
+    <title>Qishu (Jack) Qin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="projects.html">Projects</a>
-            <a href="about.html">About Me</a>
-            <a href="contact.html">Contact Me</a>
-            <a href="index.html">Main Page</a>
-        </nav>
-    </header>
+    <div class="page">
+        <div class="wrap">
+            <header class="site-header rv">
+                <a href="#top" class="brand mono"><span class="brand-mark" aria-hidden="true"></span>qishu qin</a>
+                <nav aria-label="Primary">
+                    <a class="nl" href="#top" data-scramble>index</a>
+                    <a class="nl" href="#about" data-scramble>about</a>
+                    <a class="nl" href="#writing" data-scramble>writing</a>
+                    <a class="nl" href="#" data-scramble>rss</a>
+                </nav>
+            </header>
 
-    <main>
-        <h1 class="title">Qishu Qin</h1>
-        <p class="intro-txt">Student Engineer</p>
-        <p class="intro-txt">Curious Mind</p> 
-        <p class="intro-txt">Relentless Learner</p>
-    </main>
+            <main>
+                <section id="top" class="hero">
+                    <p class="mono label rv" style="--i: 1">~/blog $ whoami</p>
+                    <h1 class="headline rv" style="--i: 2">Notes on systems, compilers, and the things I break while learning them.<span class="cur" aria-hidden="true"></span></h1>
+                    <p class="lede rv" style="--i: 3">I’m Qishu (Jack) Qin, a computer science student. I write here to understand things properly — each post is a small problem worked through end to end, with the code included.</p>
+                    <div class="hero-actions rv" style="--i: 4">
+                        <a id="latest" class="btn btn--solid" href="#writing" data-scramble>read the latest<span class="arr" aria-hidden="true">→</span></a>
+                        <a class="btn" href="#about" data-scramble>about me</a>
+                    </div>
+                </section>
+
+                <section id="about" class="section rv" style="--i: 5">
+                    <h2 class="mono">01 / about</h2>
+                    <dl class="facts">
+                        <dt>now</dt>
+                        <dd>Computer Science student at Penn State University</dd>
+                        <dt>focus</dt>
+                        <dd>Machine learning, full-stack development, artificial intelligence</dd>
+                        <dt>before</dt>
+                        <dd>[Internship / research role — Company or Lab, Year]</dd>
+                        <dt>courses</dt>
+                        <dd>[Course], [Course], [Course]</dd>
+                        <dt>elsewhere</dt>
+                        <dd class="links">
+                            <a class="nl nl--tight" href="https://github.com/JackQinPSU" target="_blank" rel="noopener noreferrer">github</a>
+                            <a class="nl nl--tight" href="https://www.linkedin.com/in/qishu-qin-63431b2a5/" target="_blank" rel="noopener noreferrer">linkedin</a>
+                            <a class="nl nl--tight" href="#">email</a>
+                            <a class="nl nl--tight" href="#">cv.pdf</a>
+                        </dd>
+                    </dl>
+                </section>
+
+                <section id="writing" class="section rv" style="--i: 6">
+                    <div class="writing-head">
+                        <h2 class="mono">02 / writing</h2>
+                        <div id="chips" class="chips" role="group" aria-label="Filter posts by topic"></div>
+                    </div>
+                    <div id="posts" class="rows"></div>
+                </section>
+            </main>
+
+            <footer class="site-footer mono">
+                <span>© 2026 qishu qin · plain html, no tracking</span>
+                <a class="btn btn--ghost" href="#top">↑ top</a>
+            </footer>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
