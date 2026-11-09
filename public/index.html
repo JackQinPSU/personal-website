@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="alternate" type="application/rss+xml" title="Qishu (Jack) Qin" href="/feed.xml">
 </head>
 <body>
     <div class="page">
@@ -17,7 +18,9 @@
                     <a class="nl" href="#top" data-scramble>index</a>
                     <a class="nl" href="#about" data-scramble>about</a>
                     <a class="nl" href="#writing" data-scramble>writing</a>
-                    <a class="nl" href="#" data-scramble>rss</a>
+                    <a class="nl" href="#newsletter" data-scramble>subscribe</a>
+                    <a class="nl" href="#contact" data-scramble>contact</a>
+                    <a class="nl" href="/feed.xml" data-scramble>rss</a>
                 </nav>
             </header>
 
@@ -47,7 +50,7 @@
                         <dd class="links">
                             <a class="nl nl--tight" href="https://github.com/JackQinPSU" target="_blank" rel="noopener noreferrer">github</a>
                             <a class="nl nl--tight" href="https://www.linkedin.com/in/qishu-qin-63431b2a5/" target="_blank" rel="noopener noreferrer">linkedin</a>
-                            <a class="nl nl--tight" href="#">email</a>
+                            <a class="nl nl--tight" href="#contact">email</a>
                             <a class="nl nl--tight" href="#">cv.pdf</a>
                         </dd>
                     </dl>
@@ -59,6 +62,42 @@
                         <div id="chips" class="chips" role="group" aria-label="Filter posts by topic"></div>
                     </div>
                     <div id="posts" class="rows"></div>
+                </section>
+
+                <section id="newsletter" class="section rv" style="--i: 7">
+                    <h2 class="mono">03 / newsletter</h2>
+                    <p class="lede">Get an email when I publish a new post. Nothing else, and you can unsubscribe anytime.</p>
+                    <form class="form form--inline" action="https://buttondown.com/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME" method="post">
+                        <label class="field">
+                            <span class="mono label">email</span>
+                            <input type="email" name="email" autocomplete="email" required>
+                        </label>
+                        <button class="btn btn--solid" type="submit" data-scramble>subscribe<span class="arr" aria-hidden="true">→</span></button>
+                    </form>
+                </section>
+
+                <section id="contact" class="section rv" style="--i: 8">
+                    <h2 class="mono">04 / contact</h2>
+                    <form class="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="company" data-contact>
+                        <input type="hidden" name="form-name" value="contact">
+                        <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+                        <label class="field">
+                            <span class="mono label">name</span>
+                            <input type="text" name="name" autocomplete="name" required>
+                        </label>
+                        <label class="field">
+                            <span class="mono label">email</span>
+                            <input type="email" name="email" autocomplete="email" required>
+                        </label>
+                        <label class="field">
+                            <span class="mono label">message</span>
+                            <textarea name="message" rows="6" required></textarea>
+                        </label>
+                        <div class="form-actions">
+                            <button class="btn" type="submit" data-scramble>send message<span class="arr" aria-hidden="true">→</span></button>
+                            <p class="form-status mono label" role="status"></p>
+                        </div>
+                    </form>
                 </section>
             </main>
 

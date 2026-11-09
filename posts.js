@@ -152,4 +152,29 @@ function listPosts() {
     return loadPosts().map(({ slug, title, date, tag }) => ({ slug, title, date, tag }));
 }
 
-module.exports = { POSTS_DIR, listPosts, renderPostPage };
+// Function builds the RSS feed that email services can watch for new posts
+function renderFeed(siteUrl) {
+    const items = loadPosts().map(post => {
+        const link = `${siteUrl}/post/${encodeURIComponent(post.slug)}`;
+        return `    <item>
+      <title>${escapeHtml(post.title)}</title>
+      <link>${link}</link>
+      <guid>${link}</guid>
+      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <description>${escapeHtml(post.summary)}</description>
+    </item>`;
+    }).join('\n');
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Qishu (Jack) Qin</title>
+    <link>${siteUrl}</link>
+    <description>Notes on systems, compilers, and the things I break while learning them.</description>
+${items}
+  </channel>
+</rss>
+`;
+}
+
+module.exports = { POSTS_DIR, listPosts, renderPostPage, renderFeed };

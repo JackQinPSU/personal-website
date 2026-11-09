@@ -103,6 +103,34 @@ function addCopyButton(btn) {
     });
 }
 
+// Function sends the contact form to Netlify without leaving the page
+function addContactForm(form) {
+    const button = form.querySelector('button');
+    const status = form.querySelector('.form-status');
+
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        button.disabled = true;
+        status.textContent = 'sending…';
+
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            });
+            if (!response.ok) throw new Error(`status ${response.status}`);
+            form.reset();
+            status.textContent = 'sent. thanks for writing.';
+        } catch (error) {
+            console.error('Could not send message:', error);
+            status.textContent = 'could not send. please try again.';
+        } finally {
+            button.disabled = false;
+        }
+    });
+}
+
 loadWriting().catch(error => console.error('Could not load posts:', error));
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -110,3 +138,4 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 document.querySelectorAll('[data-copy]').forEach(addCopyButton);
+document.querySelectorAll('[data-contact]').forEach(addContactForm);

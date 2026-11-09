@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { POSTS_DIR, listPosts, renderPostPage } = require('./posts');
+const { POSTS_DIR, listPosts, renderPostPage, renderFeed } = require('./posts');
 const app = express();
 
 // Middleware
@@ -12,6 +12,11 @@ app.use('/post', express.static(POSTS_DIR, { index: false }));
 // List of posts for the home page
 app.get('/posts.json', (req, res) => {
     res.json(listPosts());
+});
+
+// RSS feed
+app.get('/feed.xml', (req, res) => {
+    res.type('application/rss+xml').send(renderFeed(`${req.protocol}://${req.get('host')}`));
 });
 
 // A single post

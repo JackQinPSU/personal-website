@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { POSTS_DIR, listPosts, renderPostPage } = require('./posts');
+const { POSTS_DIR, listPosts, renderPostPage, renderFeed } = require('./posts');
 
 const DIST = path.join(__dirname, 'dist');
 const ASSET_TYPES = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.pdf'];
@@ -18,6 +18,9 @@ posts.forEach(post => {
 
 // List of posts for the home page
 fs.writeFileSync(path.join(DIST, 'posts.json'), JSON.stringify(posts));
+
+// RSS feed. Netlify sets URL to the site's address during a build.
+fs.writeFileSync(path.join(DIST, 'feed.xml'), renderFeed(process.env.URL || 'http://localhost:3000'));
 
 // Images and files uploaded next to the posts
 fs.mkdirSync(path.join(DIST, 'post'), { recursive: true });
