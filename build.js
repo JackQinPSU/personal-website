@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { POSTS_DIR, listPosts, renderPostPage, renderFeed } = require('./posts');
+const { renderNotesPage } = require('./notes');
 
 const DIST = path.join(__dirname, 'dist');
 const ASSET_TYPES = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.pdf'];
@@ -15,6 +16,10 @@ posts.forEach(post => {
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), renderPostPage(post.slug));
 });
+
+// Daily notes page
+fs.mkdirSync(path.join(DIST, 'notes'), { recursive: true });
+fs.writeFileSync(path.join(DIST, 'notes', 'index.html'), renderNotesPage());
 
 // List of posts for the home page
 fs.writeFileSync(path.join(DIST, 'posts.json'), JSON.stringify(posts));

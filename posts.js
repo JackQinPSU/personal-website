@@ -62,11 +62,10 @@ function highlight(text, language) {
     return escapeHtml(text);
 }
 
-// Function turns a post's markdown into HTML, and collects its h2s for the table of contents
-function renderMarkdown(content) {
-    const headings = [];
-
-    const marked = new Marked({
+// Function makes the markdown renderer used by posts and notes.
+// Each h2 it renders is added to `headings`, for the table of contents.
+function createMarked(headings = []) {
+    return new Marked({
         // Images sit next to the posts, so a bare file name points at /post/<name>
         walkTokens(token) {
             if (token.type === 'image' && !/^([a-z][a-z0-9+.-]*:|\/)/i.test(token.href)) {
@@ -99,8 +98,13 @@ function renderMarkdown(content) {
             }
         }
     });
+}
 
-    return { html: marked.parse(content), headings };
+// Function turns a post's markdown into HTML, and collects its h2s for the table of contents
+function renderMarkdown(content) {
+    const headings = [];
+    const html = createMarked(headings).parse(content);
+    return { html, headings };
 }
 
 function renderToc(headings) {
@@ -177,4 +181,4 @@ ${items}
 `;
 }
 
-module.exports = { POSTS_DIR, listPosts, renderPostPage, renderFeed };
+module.exports = { POSTS_DIR, MATTER_OPTIONS, escapeHtml, createMarked, listPosts, renderPostPage, renderFeed };
