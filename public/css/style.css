@@ -32,8 +32,6 @@ a:hover { color: #1f4bff; }
 @keyframes rv { from { opacity: 0; transform: translateY(0.5rem); } to { opacity: 1; transform: none; } }
 .rv { opacity: 0; animation: rv .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i, 0) * .08s); }
 
-@keyframes blink { 50% { opacity: 0; } }
-.cur { display: inline-block; width: .55em; height: 1em; background: #1f4bff; vertical-align: -.12em; margin-left: 0.25rem; animation: blink 1.05s steps(1) infinite; }
 
 /* Nav link: underline draws in from the left */
 .nl { font-family: 'IBM Plex Mono', monospace; font-size: 0.8125rem; color: #111; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; background: linear-gradient(#111,#111) 0 calc(50% + 0.6875rem)/0 1px no-repeat; transition: background-size .4s cubic-bezier(.7,0,.2,1); }
@@ -200,5 +198,4 @@ article { display: flex; flex-direction: column; }
 
 @media (prefers-reduced-motion: reduce) {
     .rv { opacity: 1; animation: none; }
-    .cur { animation: none; }
 }
