@@ -131,50 +131,7 @@ function addContactForm(form) {
     });
 }
 
-// Function wires the notes page: topic chips filter the log, and older notes show a page at a time.
-// Without JavaScript every note is simply shown.
-function addNotesLog() {
-    const chips = document.getElementById('note-chips');
-    const list = document.getElementById('notes');
-    if (!chips || !list) return;
-
-    const PAGE = 10;
-    const entries = [...list.querySelectorAll('.en')];
-    const buttons = chips.querySelectorAll('.chip');
-    const more = document.getElementById('more');
-    const end = document.getElementById('end');
-    let tag = 'all';
-    let shown = PAGE;
-
-    function update() {
-        const matching = entries.filter(e => tag === 'all' || e.dataset.tag === tag);
-        entries.forEach(e => { e.hidden = true; });
-        matching.slice(0, shown).forEach(e => { e.hidden = false; });
-        more.hidden = matching.length <= shown;
-        end.hidden = matching.length === 0 || !more.hidden;
-    }
-
-    buttons.forEach(b => b.addEventListener('click', () => {
-        tag = b.dataset.tag;
-        shown = PAGE;
-        buttons.forEach(other => {
-            const on = other === b;
-            other.classList.toggle('on', on);
-            other.setAttribute('aria-pressed', on);
-        });
-        update();
-    }));
-
-    more.addEventListener('click', () => {
-        shown += PAGE;
-        update();
-    });
-
-    update();
-}
-
 loadWriting().catch(error => console.error('Could not load posts:', error));
-addNotesLog();
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('[data-scramble]').forEach(addScramble);

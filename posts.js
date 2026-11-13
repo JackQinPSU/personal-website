@@ -62,7 +62,7 @@ function highlight(text, language) {
     return escapeHtml(text);
 }
 
-// Function makes the markdown renderer used by posts and notes.
+// Function makes the markdown renderer used by posts.
 // Each h2 it renders is added to `headings`, for the table of contents.
 function createMarked(headings = []) {
     return new Marked({
@@ -77,7 +77,11 @@ function createMarked(headings = []) {
                 const html = this.parser.parseInline(tokens);
                 if (depth !== 2) return `<h${depth}>${html}</h${depth}>\n`;
 
-                const id = `s${headings.length + 1}`;
+                // The id comes from the heading text, so a post can link to #troubleshooting
+                const text = html.replace(/<[^>]+>/g, '').replace(/&[#\w]+;/g, ' ');
+                const base = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+                let id = base;
+                for (let n = 2; headings.some(h => h.id === id); n++) id = `${base}-${n}`;
                 headings.push({ id, text: html.replace(/<[^>]+>/g, '').toLowerCase() });
                 return `<h2 id="${id}">${html}</h2>\n`;
             },
@@ -156,29 +160,4 @@ function listPosts() {
     return loadPosts().map(({ slug, title, date, tag }) => ({ slug, title, date, tag }));
 }
 
-// Function builds the RSS feed that email services can watch for new posts
-function renderFeed(siteUrl) {
-    const items = loadPosts().map(post => {
-        const link = `${siteUrl}/post/${encodeURIComponent(post.slug)}`;
-        return `    <item>
-      <title>${escapeHtml(post.title)}</title>
-      <link>${link}</link>
-      <guid>${link}</guid>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <description>${escapeHtml(post.summary)}</description>
-    </item>`;
-    }).join('\n');
-
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Qishu (Jack) Qin</title>
-    <link>${siteUrl}</link>
-    <description>Notes on systems, compilers, and the things I break while learning them.</description>
-${items}
-  </channel>
-</rss>
-`;
-}
-
-module.exports = { POSTS_DIR, MATTER_OPTIONS, escapeHtml, createMarked, listPosts, renderPostPage, renderFeed };
+module.exports = { POSTS_DIR, listPosts, renderPostPage };

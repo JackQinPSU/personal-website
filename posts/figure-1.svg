@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" font-family="ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace" role="img" aria-labelledby="t">
+  <title id="t">Terminal sends an HTTP prompt to the vLLM API server at 127.0.0.1:8000, which uses the NVIDIA GPU and Qwen model to generate a response</title>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#111"/>
+    </marker>
+  </defs>
+  <rect width="760" height="210" fill="#fff"/>
+
+  <rect x="20" y="40" width="190" height="90" fill="#fafafa" stroke="#111"/>
+  <text x="115" y="78" text-anchor="middle" font-size="15" fill="#111">Terminal / curl</text>
+  <text x="115" y="102" text-anchor="middle" font-size="12" fill="#6b6b6b">sends an HTTP prompt</text>
+
+  <rect x="285" y="40" width="190" height="90" fill="#fafafa" stroke="#1f4bff" stroke-width="2"/>
+  <text x="380" y="78" text-anchor="middle" font-size="15" fill="#111">vLLM API server</text>
+  <text x="380" y="102" text-anchor="middle" font-size="12" fill="#1f4bff">127.0.0.1:8000</text>
+
+  <rect x="550" y="40" width="190" height="90" fill="#fafafa" stroke="#111"/>
+  <text x="645" y="78" text-anchor="middle" font-size="15" fill="#111">NVIDIA GPU + Qwen</text>
+  <text x="645" y="102" text-anchor="middle" font-size="12" fill="#6b6b6b">generates a response</text>
+
+  <line x1="212" y1="72" x2="282" y2="72" stroke="#111" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="477" y1="72" x2="547" y2="72" stroke="#111" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="547" y1="100" x2="477" y2="100" stroke="#111" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <line x1="282" y1="100" x2="212" y2="100" stroke="#111" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+
+  <text x="380" y="175" text-anchor="middle" font-size="12" fill="#6b6b6b">request →   ← response (same local connection)</text>
+</svg>
